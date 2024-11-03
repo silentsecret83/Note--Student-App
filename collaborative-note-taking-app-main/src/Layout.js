@@ -30,7 +30,7 @@ function Layout({ children }) {
         {children}
       </main>
       <footer className="footer" role="contentinfo">
-        <p>&copy; 2024 Collaborative Note-Taking App</p>
+        <p>&copy; 2024 Note App</p>
       </footer>
     </div>
   );

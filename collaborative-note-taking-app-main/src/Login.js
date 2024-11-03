@@ -1,16 +1,16 @@
 // src/Login.js
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './firebase-config';
-import { getErrorMessage } from './errorMessages'; // Import error mapping function
-import './Form.css';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./firebase-config";
+import { getErrorMessage } from "./errorMessages"; // Import error mapping function
+import "./Form.css";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const [successMessage, setSuccessMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -18,13 +18,13 @@ function Login() {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!emailPattern.test(email)) {
-      newErrors.email = 'Invalid email format';
+      newErrors.email = "Invalid email format";
     }
 
     if (!password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = "Password is required";
     }
 
     setErrors(newErrors);
@@ -33,20 +33,24 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setSuccessMessage('');
+    setSuccessMessage("");
     if (validateForm()) {
       try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        setSuccessMessage('Login successful!');
-        console.log('User logged in:', userCredential.user);
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        setSuccessMessage("Login successful!");
+        console.log("User logged in:", userCredential.user);
         // Clear the form fields
-        setEmail('');
-        setPassword('');
+        setEmail("");
+        setPassword("");
         setErrors({});
-        navigate('/'); // Redirect to home page after login
+        navigate("/"); // Redirect to home page after login
       } catch (error) {
         setErrors({ form: getErrorMessage(error.code) }); // Display custom error message
-        console.error('Error logging in user:', error);
+        console.error("Error logging in user:", error);
       }
     }
   };
@@ -65,7 +69,11 @@ function Login() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        {errors.email && <p className="error" role="alert">{errors.email}</p>}
+        {errors.email && (
+          <p className="error" role="alert">
+            {errors.email}
+          </p>
+        )}
 
         <label htmlFor="password">Password:</label>
         <input
@@ -77,11 +85,23 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {errors.password && <p className="error" role="alert">{errors.password}</p>}
+        {errors.password && (
+          <p className="error" role="alert">
+            {errors.password}
+          </p>
+        )}
 
         <button type="submit">Login</button>
-        {errors.form && <p className="error" role="alert">{errors.form}</p>}
-        {successMessage && <p className="success" role="status">{successMessage}</p>}
+        {errors.form && (
+          <p className="error" role="alert">
+            {errors.form}
+          </p>
+        )}
+        {successMessage && (
+          <p className="success" role="status">
+            {successMessage}
+          </p>
+        )}
       </form>
       <p>
         Don't have an account? <Link to="/register">Sign up here</Link>

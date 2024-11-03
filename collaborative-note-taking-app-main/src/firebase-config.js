@@ -6,12 +6,13 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCtHI6eSrc7CqDHMBF1mAOhI7RJZ3BpY-Y",
-  authDomain: "study-notes-app.firebaseapp.com",
-  projectId: "study-notes-app",
-  storageBucket: "study-notes-app.firebasestorage.app",
-  messagingSenderId: "402778176973",
-  appId: "1:402778176973:web:57dff44817bcf1ffc79884",
+  apiKey: "AIzaSyDq7u7AL8xcZ_MaYc6ULM-JZDy1oMlIGTk",
+  authDomain: "note-taking-app-50cee.firebaseapp.com",
+  projectId: "note-taking-app-50cee",
+  storageBucket: "note-taking-app-50cee.appspot.com",
+  messagingSenderId: "175598466074",
+  appId: "1:175598466074:web:899899ec054ad7574b0da3",
+  measurementId: "G-CSFEZXZPBT",
 };
 
 // Initialize Firebase
